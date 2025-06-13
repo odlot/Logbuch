@@ -1,4 +1,5 @@
 import type { Log } from '../models/Log';
+import Box from '@mui/material/Box';
 
 type EditorProps = {
     log?: Log
@@ -6,7 +7,7 @@ type EditorProps = {
 
 export default function Editor({ log }: EditorProps) {
     return (
-        <div>
+        <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
             {log ? (
                 <div>
                     {log.filename}
@@ -16,6 +17,6 @@ export default function Editor({ log }: EditorProps) {
                     Editor
                 </div>
             )}
-        </div>
+        </Box>
     );
 }
