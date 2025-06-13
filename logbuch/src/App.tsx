@@ -14,10 +14,10 @@ function App() {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid size={4}>
-          <LogList logs={ Logs } selectLog={ setSelectedLog }/>
+          <LogList logs={Logs} selectLog={setSelectedLog} />
         </Grid>
         <Grid size={8}>
-          <Editor log={ selectedLog }/>
+          <Editor log={selectedLog} />
         </Grid>
       </Grid>
     </Box>
