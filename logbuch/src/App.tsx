@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
 
 import LogList from './components/LogList';
 import type { Log } from './models/Log';
@@ -21,10 +24,15 @@ function App() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid size={4}>
-          <LogList logs={logs} selectLog={setSelectedLog} />
+        <Grid size={2}>
+          <Stack spacing={2}>
+            <Button variant="contained" startIcon={<NoteAddOutlinedIcon />}>
+              Add Log
+            </Button>
+            <LogList logs={logs} selectLog={setSelectedLog} />
+          </Stack>
         </Grid>
-        <Grid size={8}>
+        <Grid size={10}>
           <Editor log={selectedLog} updateLog={handleLogUpdate} />
         </Grid>
       </Grid>

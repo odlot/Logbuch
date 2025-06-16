@@ -6,7 +6,18 @@ export function convertLogToJSONContent(log: Log): JSONContent {
   content.push({
     type: "heading",
     attrs: { level: 1 },
-    content: [{ type: "text", text: log.filename }]
+    content: [{
+      type: "text",
+      text: log.filename
+    }]
+  });
+  content.push({
+    type: "note",
+    attrs: { class: 'custom-note' },
+    content: [{
+      type: "text",
+      text: "Add your notes here..."
+    }]
   });
   return {
     type: "doc",
@@ -17,7 +28,9 @@ export function convertLogToJSONContent(log: Log): JSONContent {
 export function convertJSONContentToLog(log: Log, content: JSONContent): Log {
   content.content?.forEach((node) => {
     if (node.type === "heading") {
-      log.filename = extractTextFromContent(node.content);
+      if (node.attrs?.level === 1) {
+        log.filename = extractTextFromContent(node.content);
+      }
     }
   });
   return log;

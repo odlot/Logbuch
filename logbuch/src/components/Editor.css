@@ -1,0 +1,10 @@
+.my-custom-paragraph {
+    color: blue;
+}
+
+.note {
+    border-left: 3px solid #68cef8;
+    padding-left: 10px;
+    margin-bottom: 1em;
+    background-color: rgba(104, 206, 248, 0.1);
+}

@@ -3,24 +3,44 @@ import type { Log } from '../models/Log';
 import Box from '@mui/material/Box';
 
 import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
+import Document from '@tiptap/extension-document';
+import Text from '@tiptap/extension-text';
+import Heading from '@tiptap/extension-heading';
+import CodeBlock from '@tiptap/extension-code-block';
 
 import {
     convertLogToJSONContent,
     convertJSONContentToLog
 } from '../adapters/Tiptap';
 
+import { Note } from '../extensions/Note';
+
+import './Editor.css';
+
 type EditorProps = {
     log?: Log,
     updateLog: (updatedLog: Log) => void;
 };
 
-const extensions = [StarterKit];
+const extensions = [
+    Document,
+    Text,
+    /*
+    Paragraph.configure({
+        HTMLAttributes: {
+            class: 'my-custom-paragraph',
+        },
+    }),
+    */
+    Heading,
+    CodeBlock,
+    Note
+];
 
 export default function Editor({ log, updateLog }: EditorProps) {
     const editor = useEditor({
         extensions,
-        content: log ? convertLogToJSONContent(log) : '<p>Hello World!</p>',
+        content: log ? convertLogToJSONContent(log) : '<div class="note">Hello World!</div>',
         onUpdate: ({ editor }) => {
             if (log) {
                 const content = editor.getJSON();
@@ -29,14 +49,19 @@ export default function Editor({ log, updateLog }: EditorProps) {
                 console.log("Updated log:", updatedLog);
                 updateLog(updatedLog);
             }
-        }
+        },
+        editorProps: {
+            attributes: {
+                class: 'custom-editor',
+            },
+        },
     });
 
     useEffect(() => {
         if (editor && log) {
             editor.commands.setContent(convertLogToJSONContent(log));
         } else if (editor && !log) {
-            editor.commands.setContent('<p>Hello World!</p>');
+            editor.commands.setContent('<div class="note">Hello World!</div>');
         }
     }, [editor, log]);
 
