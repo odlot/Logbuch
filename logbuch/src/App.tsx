@@ -21,12 +21,27 @@ function App() {
     );
   };
 
+  const handleAddLog = () => {
+    const log: Log = {
+      id: crypto.randomUUID(),
+      filename: "Untitled Log",
+      createdAt: new Date().toISOString(),
+      notes: []
+    };
+    setLogs(logs => [...logs, log]);
+    setSelectedLog(log);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid size={2}>
           <Stack spacing={2}>
-            <Button variant="contained" startIcon={<NoteAddOutlinedIcon />}>
+            <Button
+              variant="contained"
+              startIcon={<NoteAddOutlinedIcon />}
+              onClick={handleAddLog}
+            >
               Add Log
             </Button>
             <LogList logs={logs} selectLog={setSelectedLog} />
