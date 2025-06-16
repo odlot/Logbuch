@@ -5,7 +5,11 @@ export const Logs: Log[] = [
     id: "92c957d7-1c35-410c-b7af-7bbf47d5b453",
     filename: "2025-01-01-mock-001.json",
     createdAt: "2025-01-01T00:00:00.000Z",
-    notes: []
+    notes: [{
+      id: "ff652ffe-3a6c-4505-87c7-705dcadccf7f",
+      text: "This is a sample note.",
+      createdAt: "2025-01-01T00:00:00.000Z"
+    }]
   },
   {
     id: "e5bf790d-c7a3-4d4f-90b4-c5cc376e4938",

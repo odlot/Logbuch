@@ -27,6 +27,23 @@ export const Note = Node.create<NoteOptions>({
     }
   },
 
+  addAttributes() {
+    return {
+      id: {
+        default: () => crypto.randomUUID(),
+        parseHTML: (element) => element.getAttribute("data-id"),
+        renderHTML: (attributes) => ({ "data-id": attributes.id }),
+      },
+      createdAt: {
+        default: () => new Date().toISOString(),
+        parseHTML: (element) => element.getAttribute("data-created-at"),
+        renderHTML: (attributes) => ({
+          "data-created-at": attributes.createdAt,
+        }),
+      },
+    };
+  },
+
   parseHTML() {
     return [
       { tag: 'div.note' },
@@ -48,7 +65,17 @@ export const Note = Node.create<NoteOptions>({
 
   addKeyboardShortcuts() {
     return {
-      Enter: () => this.editor.commands.splitBlock(),
+      Enter: () => {
+        if (this.editor.isActive(this.name)) {
+          this.editor.commands.splitBlock();
+          this.editor.commands.updateAttributes(this.name, {
+            id: crypto.randomUUID(),
+            createdAt: new Date().toISOString()
+          });
+          return true;
+        }
+        return false;
+      }
     }
   },
 })
