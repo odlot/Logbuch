@@ -1,8 +1,7 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import FormatBoldIcon from '@mui/icons-material/FormatBold';
-import FormatItalicIcon from '@mui/icons-material/FormatItalic';
+import CodeIcon from '@mui/icons-material/Code';
 
 import { Editor } from '@tiptap/react';
 
@@ -15,18 +14,11 @@ export default function MenuBar({ editor }: MenuBarProps) {
         <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
             <ButtonGroup variant="outlined" size="small">
                 <Button
-                    onClick={() => editor.chain().focus().toggleBold().run()}
-                    variant={editor.isActive('bold') ? 'contained' : 'outlined'}
-                    title="Bold"
+                    onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+                    variant={editor.isActive('codeBlock') ? 'contained' : 'outlined'}
+                    title="Code Block"
                 >
-                    <FormatBoldIcon fontSize="small" />
-                </Button>
-                <Button
-                    onClick={() => editor.chain().focus().toggleItalic().run()}
-                    variant={editor.isActive('italic') ? 'contained' : 'outlined'}
-                    title="Italic"
-                >
-                    <FormatItalicIcon fontSize="small" />
+                    <CodeIcon fontSize="small" />
                 </Button>
             </ButtonGroup>
         </Box>
