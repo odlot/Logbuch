@@ -4,14 +4,6 @@ import type { JSONContent } from '@tiptap/react';
 
 export function convertLogToJSONContent(log: Log): JSONContent {
   const content: JSONContent[] = [];
-  content.push({
-    type: "heading",
-    attrs: { level: 1 },
-    content: [{
-      type: "text",
-      text: log.filename
-    }]
-  });
   log.notes.forEach((note: Note) => {
     content.push({
       type: "note",
@@ -35,11 +27,6 @@ export function convertLogToJSONContent(log: Log): JSONContent {
 export function convertJSONContentToLog(log: Log, content: JSONContent): Log {
   const notes: Note[] = [];
   content.content?.forEach((node) => {
-    if (node.type === "heading") {
-      if (node.attrs?.level === 1) {
-        log.filename = extractTextFromContent(node.content);
-      }
-    }
     if (node.type === "note") {
       console.log("Note", node);
       notes.push({

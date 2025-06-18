@@ -9,6 +9,7 @@ import LogList from './components/LogList';
 import type { Log } from './models/Log';
 import { Logs } from './mocks/Logs';
 
+import Filename from './components/Filename';
 import Editor from './components/Editor';
 
 function App() {
@@ -19,6 +20,16 @@ function App() {
     setLogs(previousLogs =>
       previousLogs.map(log => log.id === updatedLog.id ? updatedLog : log)
     );
+  };
+
+  const handleFilenameChange = (filename: string) => {
+    if (selectedLog) {
+      const log = {
+        ...selectedLog,
+        filename: filename
+      };
+      handleLogUpdate(log);
+    }
   };
 
   const handleAddLog = () => {
@@ -48,7 +59,10 @@ function App() {
           </Stack>
         </Grid>
         <Grid size={10}>
-          <Editor log={selectedLog} updateLog={handleLogUpdate} />
+          <Stack spacing={2}>
+            <Filename log={selectedLog} changeFilename={handleFilenameChange} />
+            <Editor log={selectedLog} updateLog={handleLogUpdate} />
+          </Stack>
         </Grid>
       </Grid>
     </Box>
