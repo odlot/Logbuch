@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 
 type LogListProps = {
     logs: Log[];
@@ -22,15 +24,27 @@ export default function LogList({ logs, selectLog }: LogListProps) {
         <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
             <List>
                 {logs.map((log, index) => (
-                    <ListItemButton
-                        key={log.id}
-                        selected={selectedIndex === index}
-                        onClick={() => handleListItemClick(log, index)}
-                    >
-                        <ListItemText>
-                            {log.filename}
-                        </ListItemText>
-                    </ListItemButton>
+                    <Box key={log.id}>
+                        <ListItemButton
+                            selected={selectedIndex === index}
+                            onClick={() => handleListItemClick(log, index)}
+                        >
+                            <ListItemText primary={
+                                <Typography
+                                    variant="body1"
+                                    sx={{
+                                        fontWeight: selectedIndex === index ? 'bold' : 'normal',
+                                        color: selectedIndex === index ? 'primary.main' : 'text.primary'
+                                    }}
+                                >
+                                    {log.filename}
+                                </Typography>
+                            }>
+                                {log.filename}
+                            </ListItemText>
+                        </ListItemButton>
+                        {index < logs.length - 1 && <Divider />}
+                    </Box>
                 ))}
             </List>
         </Box>
