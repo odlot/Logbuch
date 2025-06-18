@@ -17,6 +17,8 @@ import { Note } from '../extensions/Note';
 
 import './Editor.css';
 
+import MenuBar from './MenuBar';
+
 type EditorProps = {
     log?: Log,
     updateLog: (updatedLog: Log) => void;
@@ -25,13 +27,6 @@ type EditorProps = {
 const extensions = [
     Document,
     Text,
-    /*
-    Paragraph.configure({
-        HTMLAttributes: {
-            class: 'my-custom-paragraph',
-        },
-    }),
-    */
     Heading,
     CodeBlock,
     Note
@@ -66,8 +61,14 @@ export default function Editor({ log, updateLog }: EditorProps) {
     }, [editor, log]);
 
     return (
-        <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-            <EditorContent editor={editor} />
+        <Box sx={{
+            width: '100%',
+            bgcolor: 'background.paper',
+            border: '1px solid #ddd',
+            borderRadius: 1
+        }}>
+            <MenuBar editor={editor}/>
+            <EditorContent editor={editor}/>
         </Box>
     );
 }
