@@ -10,6 +10,7 @@ import type { Log } from './models/Log';
 import { Logs } from './mocks/Logs';
 
 import Filename from './components/Filename';
+import Metadata from './components/Metadata';
 import Editor from './components/Editor';
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
         <Grid size={10}>
           <Stack spacing={2}>
             <Filename log={selectedLog} changeFilename={handleFilenameChange} />
+            <Metadata log={selectedLog} />
             <Editor log={selectedLog} updateLog={handleLogUpdate} />
           </Stack>
         </Grid>
