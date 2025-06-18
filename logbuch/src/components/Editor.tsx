@@ -64,8 +64,7 @@ export default function Editor({ log, updateLog }: EditorProps) {
         <Box sx={{
             width: '100%',
             bgcolor: 'background.paper',
-            border: '1px solid #ddd',
-            borderRadius: 1
+            border: '1px solid #e0e0e0',
         }}>
             <MenuBar editor={editor}/>
             <EditorContent editor={editor}/>
