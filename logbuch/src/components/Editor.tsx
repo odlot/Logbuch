@@ -6,7 +6,7 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import Document from '@tiptap/extension-document';
 import Text from '@tiptap/extension-text';
 import Heading from '@tiptap/extension-heading';
-import CodeBlock from '@tiptap/extension-code-block';
+// Import the custom code block instead
 
 import {
     convertLogToJSONContent,
@@ -14,6 +14,7 @@ import {
 } from '../adapters/Tiptap';
 
 import { Note } from '../extensions/Note';
+import { Code } from '../extensions/Code';
 
 import './Editor.css';
 
@@ -28,7 +29,7 @@ const extensions = [
     Document,
     Text,
     Heading,
-    CodeBlock,
+    Code,
     Note
 ];
 
@@ -65,6 +66,7 @@ export default function Editor({ log, updateLog }: EditorProps) {
             width: '100%',
             bgcolor: 'background.paper',
             border: '1px solid #e0e0e0',
+            height: '100%'
         }}>
             <MenuBar editor={editor}/>
             <EditorContent editor={editor}/>

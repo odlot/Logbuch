@@ -6,12 +6,16 @@ import CodeIcon from '@mui/icons-material/Code';
 import { Editor } from '@tiptap/react';
 
 type MenuBarProps = {
-    editor: Editor;
+    editor: Editor | null;
 };
 
 export default function MenuBar({ editor }: MenuBarProps) {
+    if (!editor) {
+        return null;
+    }
+    
     return (
-        <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+        <Box sx={{ width: '100%', bgcolor: 'background.paper', p: 1 }}>
             <ButtonGroup variant="outlined" size="small">
                 <Button
                     onClick={() => editor.chain().focus().toggleCodeBlock().run()}

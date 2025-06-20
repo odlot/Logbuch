@@ -47,7 +47,6 @@ export const Note = Node.create<NoteOptions>({
   parseHTML() {
     return [
       { tag: 'div.note' },
-      { tag: 'p.note' }
     ]
   },
 
