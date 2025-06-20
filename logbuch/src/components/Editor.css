@@ -3,8 +3,21 @@
 }
 
 .note {
-    border-left: 3px solid #68cef8;
-    padding-left: 10px;
-    margin-bottom: 1em;
-    background-color: rgba(104, 206, 248, 0.1);
+    background-color: #f5f5f5;
+    border-left: 3px solid #3b82f6;
+    border-radius: 4px;
+    padding: 12px 16px;
+    margin: 1rem 0;
+}
+
+.note-header {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+.note-content {
+    min-height: 1.25em;
 }

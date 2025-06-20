@@ -46,12 +46,28 @@ export const Note = Node.create<NoteOptions>({
 
   parseHTML() {
     return [
-      { tag: 'div.note' },
-    ]
+      {
+        tag: 'div[data-type="note"]',
+      },
+    ];
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['div', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
+    const createdAt = HTMLAttributes.createdAt;
+    const formattedDate = createdAt
+      ? new Date(createdAt).toLocaleString()
+      : new Date().toLocaleString();
+
+    return [
+      "div",
+      mergeAttributes(
+        { "data-type": "note", class: "note" },
+        this.options.HTMLAttributes,
+        HTMLAttributes,
+      ),
+      ["div", { class: "note-header" }, formattedDate],
+      ["div", { class: "note-content" }, 0],
+    ];
   },
 
   addCommands() {
