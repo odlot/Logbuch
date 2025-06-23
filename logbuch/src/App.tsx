@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
 
 import LogList from './components/LogList';
@@ -44,18 +46,33 @@ function App() {
     setSelectedLog(log);
   };
 
+  const handleOpenDirectory = () => {
+
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid size={2}>
           <Stack spacing={2}>
-            <Button
-              variant="contained"
-              startIcon={<NoteAddOutlinedIcon />}
-              onClick={handleAddLog}
-            >
-              Add Log
-            </Button>
+            <Box>
+              <ButtonGroup variant="outlined" size="small">
+                <Button
+                  variant="contained"
+                  startIcon={<FolderOpenIcon />}
+                  onClick={handleOpenDirectory}
+                >
+                  Open Directory
+                </Button>
+                <Button
+                  variant="contained"
+                  startIcon={<NoteAddOutlinedIcon />}
+                  onClick={handleAddLog}
+                >
+                  Add Log
+                </Button>
+              </ButtonGroup>
+            </Box>
             <LogList logs={logs} selectLog={setSelectedLog} />
           </Stack>
         </Grid>
